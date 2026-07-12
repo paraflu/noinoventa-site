@@ -1,35 +1,80 @@
 @import "tailwindcss";
 
+/* Theme variables */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-card: #ffffff;
+  --color-text: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-header-bg: #000000;
+  --color-header-text: #ffffff;
+  --color-primary: #00AEEF;
+  --color-primary-hover: #0090cc;
+  --color-secondary: #FF6900;
+  --color-secondary-hover: #e55d00;
+  --color-hero-from: #000000;
+  --color-hero-via: #1a1a2e;
+  --color-hero-to: #000000;
+}
+
+.dark {
+  --color-bg: #000000;
+  --color-bg-secondary: #0a0a0f;
+  --color-bg-card: #111118;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-border: #1e293b;
+  --color-header-bg: #000000;
+  --color-header-text: #ffffff;
+  --color-primary: #00AEEF;
+  --color-primary-hover: #33c2ff;
+  --color-secondary: #FF6900;
+  --color-secondary-hover: #ff8533;
+  --color-hero-from: #000000;
+  --color-hero-via: #0a0a1a;
+  --color-hero-to: #000000;
+}
+
+/* Apply theme to body */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
 /* Responsive images */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Ensure proper box sizing */
 * {
   box-sizing: border-box;
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar for Webkit browsers */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-bg-secondary);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--color-text-muted);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--color-text-secondary);
+}
+
+/* Transition for theme change */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

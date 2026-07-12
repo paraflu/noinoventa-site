@@ -43,17 +43,17 @@ const galleries = [
 
 <BaseLayout title="Galleria">
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-black via-gray-900 to-black text-white">
+  <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
     <div class="max-w-6xl mx-auto px-4 py-16 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Galleria</h1>
-      <p class="text-xl text-gray-400">Ricordi e momenti del nostro circolo</p>
+      <p class="text-xl" style="color: var(--color-text-secondary);">Ricordi e momenti del nostro circolo</p>
     </div>
   </section>
 
-  <section class="bg-gray-950 max-w-6xl mx-auto px-4 py-12">
+  <section class="max-w-6xl mx-auto px-4 py-12" style="background-color: var(--color-bg-secondary);">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {galleries.map((gallery) => (
-        <div class="group bg-gray-900 rounded-xl shadow-md overflow-hidden border border-gray-800 hover:border-[#00AEEF]/50 transition-all cursor-pointer">
+        <div class="group rounded-xl shadow-md overflow-hidden border transition-all cursor-pointer hover:shadow-lg" style="background-color: var(--color-bg-card); border-color: var(--color-border);">
           <div class="aspect-[4/3] overflow-hidden relative">
             <img
               src={gallery.cover}
@@ -62,18 +62,18 @@ const galleries = [
               loading="lazy"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-              <span class="text-[#00AEEF] text-sm font-medium">{gallery.count} foto</span>
+              <span class="text-sm font-medium" style="color: var(--color-primary);">{gallery.count} foto</span>
             </div>
           </div>
           <div class="p-5">
-            <h3 class="font-bold text-lg text-white group-hover:text-[#00AEEF] transition-colors">{gallery.title}</h3>
-            <p class="text-sm text-gray-500 mt-1">{gallery.description}</p>
+            <h3 class="font-bold text-lg group-hover:underline" style="color: var(--color-text);">{gallery.title}</h3>
+            <p class="text-sm mt-1" style="color: var(--color-text-muted);">{gallery.description}</p>
           </div>
         </div>
       ))}
     </div>
 
-    <p class="text-center text-gray-600 text-sm mt-12">
+    <p class="text-center text-sm mt-12" style="color: var(--color-text-muted);">
       La galleria completa sarà disponibile al trasferimento dei contenuti dal sito precedente.
     </p>
   </section>

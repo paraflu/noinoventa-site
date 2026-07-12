@@ -54,25 +54,24 @@ const categories = ["Tutti", ...new Set(news.map(n => n.category))];
 
 <BaseLayout title="Notizie">
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-black via-gray-900 to-black text-white">
+  <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
     <div class="max-w-6xl mx-auto px-4 py-16 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Notizie</h1>
-      <p class="text-xl text-gray-400">Tutto ciò che accade nel nostro circolo</p>
+      <p class="text-xl" style="color: var(--color-text-secondary);">Tutto ciò che accade nel nostro circolo</p>
     </div>
   </section>
 
-  <section class="bg-gray-950 max-w-6xl mx-auto px-4 py-12">
+  <section class="max-w-6xl mx-auto px-4 py-12" style="background-color: var(--color-bg-secondary);">
     <!-- Category filters -->
     <div class="flex flex-wrap gap-2 mb-10">
       {categories.map((cat) => (
         <button
-          class:list={[
-            "px-4 py-2 rounded-full text-sm font-medium transition-colors border",
-            cat === "Tutti"
-              ? "bg-[#00AEEF] text-black border-[#00AEEF]"
-              : "bg-gray-900 text-gray-400 border-gray-700 hover:border-[#00AEEF] hover:text-[#00AEEF]",
-          ]}
+          class="px-4 py-2 rounded-full text-sm font-medium transition-colors border"
           data-category={cat}
+          style={cat === "Tutti"
+            ? `background-color: var(--color-primary); color: #000; border-color: var(--color-primary);`
+            : `background-color: var(--color-bg-card); color: var(--color-text-secondary); border-color: var(--color-border);`
+          }
         >
           {cat}
         </button>
@@ -82,7 +81,7 @@ const categories = ["Tutti", ...new Set(news.map(n => n.category))];
     <!-- News list -->
     <div class="space-y-8">
       {news.map((item) => (
-        <article class="bg-gray-900 rounded-xl shadow-md overflow-hidden border border-gray-800 hover:border-gray-700 transition-colors">
+        <article class="rounded-xl shadow-md overflow-hidden border transition-colors" style="background-color: var(--color-bg-card); border-color: var(--color-border);">
           <div class="md:flex">
             <div class="md:w-72 shrink-0">
               <img
@@ -94,12 +93,12 @@ const categories = ["Tutti", ...new Set(news.map(n => n.category))];
             </div>
             <div class="p-6 flex flex-col justify-center">
               <div class="flex items-center gap-3 mb-2">
-                <span class="bg-[#00AEEF]/20 text-[#00AEEF] text-xs font-medium px-2.5 py-0.5 rounded-full">{item.category}</span>
-                <time class="text-xs text-gray-500">{item.date}</time>
+                <span class="text-xs font-medium px-2.5 py-0.5 rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent); color: var(--color-primary);">{item.category}</span>
+                <time class="text-xs" style="color: var(--color-text-muted);">{item.date}</time>
               </div>
-              <h2 class="text-xl font-bold text-white mb-2">{item.title}</h2>
-              <p class="text-gray-400 text-sm leading-relaxed mb-3">{item.content}</p>
-              <div class="text-xs text-gray-600">di {item.author}</div>
+              <h2 class="text-xl font-bold mb-2" style="color: var(--color-text);">{item.title}</h2>
+              <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-secondary);">{item.content}</p>
+              <div class="text-xs" style="color: var(--color-text-muted);">di {item.author}</div>
             </div>
           </div>
         </article>
