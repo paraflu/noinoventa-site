@@ -2,13 +2,16 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 text-gray-300 mt-auto">
+<footer class="bg-black text-gray-300 mt-auto border-t border-gray-800">
   <div class="max-w-6xl mx-auto px-4 py-12">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- About -->
       <div>
-        <h3 class="text-white font-bold text-lg mb-3">Associazione NOI</h3>
-        <p class="text-sm leading-relaxed">
+        <div class="flex items-center gap-2 mb-3">
+          <img src="/favicon.svg" alt="Logo NOI" class="w-8 h-8" />
+          <h3 class="text-[#00AEEF] font-bold text-lg">Associazione NOI</h3>
+        </div>
+        <p class="text-sm leading-relaxed text-gray-400">
           Circolo di promozione sociale e culturale di Noventa di Piave.
           Attività, eventi e manifestazioni per la comunità.
         </p>
@@ -16,36 +19,36 @@ const year = new Date().getFullYear();
 
       <!-- Contact -->
       <div>
-        <h3 class="text-white font-bold text-lg mb-3">Contatti</h3>
+        <h3 class="text-[#FF6900] font-bold text-lg mb-3">Contatti</h3>
         <ul class="text-sm space-y-2">
           <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 mt-0.5 shrink-0 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <span>Via Martiri della Libertà 118/120<br/>30027 Noventa di Piave (VE)</span>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 shrink-0 text-[#00AEEF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <a href="mailto:noicircolo@gmail.com" class="hover:text-white transition-colors">noicircolo@gmail.com</a>
+            <a href="mailto:noicircolo@gmail.com" class="hover:text-[#00AEEF] transition-colors">noicircolo@gmail.com</a>
           </li>
         </ul>
       </div>
 
       <!-- Links -->
       <div>
-        <h3 class="text-white font-bold text-lg mb-3">Link utili</h3>
+        <h3 class="text-[#FF6900] font-bold text-lg mb-3">Link utili</h3>
         <ul class="text-sm space-y-2">
-          <li><a href="https://www.facebook.com/groups/157815160976106/" target="_blank" rel="noopener" class="hover:text-white transition-colors">Facebook</a></li>
-          <li><a href="/notizie" class="hover:text-white transition-colors">Ultime notizie</a></li>
-          <li><a href="/galleria" class="hover:text-white transition-colors">Galleria fotografica</a></li>
+          <li><a href="https://www.facebook.com/groups/157815160976106/" target="_blank" rel="noopener" class="hover:text-[#00AEEF] transition-colors">Facebook</a></li>
+          <li><a href="/notizie" class="hover:text-[#00AEEF] transition-colors">Ultime notizie</a></li>
+          <li><a href="/galleria" class="hover:text-[#00AEEF] transition-colors">Galleria fotografica</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+    <div class="border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-600">
       &copy; {year} Associazione NOI — Noventa di Piave. Tutti i diritti riservati.
     </div>
   </div>

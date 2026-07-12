@@ -28,24 +28,27 @@ const news = [
 
 <BaseLayout title="Home">
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-blue-900 to-blue-700 text-white">
+  <section class="bg-gradient-to-br from-black via-gray-900 to-black text-white">
     <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
+      <div class="flex justify-center mb-6">
+        <img src="/favicon.svg" alt="Logo NOI" class="w-24 h-24" />
+      </div>
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        Associazione <span class="text-yellow-300">NOI</span>
+        Associazione <span class="text-[#FF6900]">NOI</span>
       </h1>
-      <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl mx-auto">
+      <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
         Noventa di Piave — Circolo di promozione sociale e culturale
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="/notizie"
-          class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-colors"
+          class="bg-[#00AEEF] text-black px-8 py-3 rounded-lg font-bold hover:bg-[#00AEEF]/80 transition-colors"
         >
           Ultime Notizie
         </a>
         <a
           href="/dove-siamo"
-          class="border-2 border-white/40 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+          class="border-2 border-[#FF6900] text-[#FF6900] px-8 py-3 rounded-lg font-medium hover:bg-[#FF6900] hover:text-black transition-colors"
         >
           Dove Siamo
         </a>
@@ -54,17 +57,17 @@ const news = [
   </section>
 
   <!-- News preview -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
+  <section class="bg-gray-950 max-w-6xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-3xl font-bold text-gray-900">Ultime Notizie</h2>
-      <a href="/notizie" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+      <h2 class="text-3xl font-bold text-white">Ultime Notizie</h2>
+      <a href="/notizie" class="text-[#00AEEF] hover:text-[#00AEEF]/80 font-medium text-sm">
         Vedi tutte →
       </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {news.map((item) => (
-        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-100">
+        <article class="bg-gray-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-800">
           <div class="aspect-[3/4] overflow-hidden">
             <img
               src={item.image}
@@ -75,8 +78,8 @@ const news = [
           </div>
           <div class="p-5">
             <time class="text-xs text-gray-500 font-medium">{item.date}</time>
-            <h3 class="text-lg font-bold mt-1 mb-2 line-clamp-2">{item.title}</h3>
-            <p class="text-sm text-gray-600 line-clamp-2">{item.excerpt}</p>
+            <h3 class="text-lg font-bold mt-1 mb-2 line-clamp-2 text-white">{item.title}</h3>
+            <p class="text-sm text-gray-400 line-clamp-2">{item.excerpt}</p>
           </div>
         </article>
       ))}
@@ -84,10 +87,10 @@ const news = [
   </section>
 
   <!-- About strip -->
-  <section class="bg-gray-50 border-y border-gray-200">
+  <section class="bg-black border-y border-gray-800">
     <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Il nostro circolo</h2>
-      <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+      <h2 class="text-3xl font-bold text-white mb-4">Il nostro circolo</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed">
         L'Associazione NOI è un circolo di promozione sociale e culturale di Noventa di Piave.
         Organizziamo eventi, rassegne teatrali, sagre, laboratori e attività per tutta la comunità.
       </p>
