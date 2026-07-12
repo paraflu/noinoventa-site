@@ -1,17 +1,96 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 
+const news = [
+  {
+    title: "Notte di fiabe al Parco – ECCO I MOSTRI!",
+    date: "18 Giu 2026",
+    image: "https://www.noinoventa.it/joomla/images/fiabe_parco_web.jpg",
+    excerpt: "Porta un telo mare o una coperta e accomodati sul prato: lo spettacolo è sotto le stelle!",
+    slug: "notte-di-fiabe-al-parco",
+  },
+  {
+    title: "Sagra dell'Uva 2026 – Programma Completo",
+    date: "15 Giu 2026",
+    image: "https://www.noinoventa.it/images/Programma_Sagra_2026-1.jpg",
+    excerpt: "Ecco il programma completo della Sagra dell'Uva 2026. Tante iniziative, gusti e tradizione!",
+    slug: "sagra-uva-2026",
+  },
+  {
+    title: "Intrecciamo Storie – Laboratorio di Scrittura Creativa",
+    date: "10 Giu 2026",
+    image: "https://www.noinoventa.it/images/intrecciamostorie.png",
+    excerpt: "Un percorso di scrittura creativa aperto a tutti. Le storie si intrecciano tra loro.",
+    slug: "intrecciamo-storie",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-blue-900 to-blue-700 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Associazione <span class="text-yellow-300">NOI</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        Noventa di Piave — Circolo di promozione sociale e culturale
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/notizie"
+          class="bg-yellow-400 text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-300 transition-colors"
+        >
+          Ultime Notizie
+        </a>
+        <a
+          href="/dove-siamo"
+          class="border-2 border-white/40 text-white px-8 py-3 rounded-lg font-medium hover:bg-white/10 transition-colors"
+        >
+          Dove Siamo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- News preview -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-3xl font-bold text-gray-900">Ultime Notizie</h2>
+      <a href="/notizie" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+        Vedi tutte →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {news.map((item) => (
+        <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-100">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <time class="text-xs text-gray-500 font-medium">{item.date}</time>
+            <h3 class="text-lg font-bold mt-1 mb-2 line-clamp-2">{item.title}</h3>
+            <p class="text-sm text-gray-600 line-clamp-2">{item.excerpt}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- About strip -->
+  <section class="bg-gray-50 border-y border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Il nostro circolo</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        L'Associazione NOI è un circolo di promozione sociale e culturale di Noventa di Piave.
+        Organizziamo eventi, rassegne teatrali, sagre, laboratori e attività per tutta la comunità.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
