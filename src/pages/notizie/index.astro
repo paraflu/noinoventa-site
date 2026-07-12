@@ -43,13 +43,13 @@ const news = [
     date: "2 Giu 2026",
     author: "Andrea Forlin",
     image: "https://www.noinoventa.it/images/photo_5809658509203803762_y.jpg",
-    content: "Programma degli eventi per la Festa della Repubblica a Noventa di Piave.",
+    content: "Programma degli eventi per la Festa della Repubblica. Mostra storica, concerto e cena sociale.",
     category: "Eventi",
-    slug: "festa-repubblica",
+    slug: "festa-della-repubblica",
   },
 ];
 
-const categories = ["Tutti", ...new Set(news.map(n => n.category))];
+const categories = ["Tutti", "Eventi", "Sagre", "Laboratori", "Concerti"];
 ---
 
 <BaseLayout title="Notizie">
@@ -57,52 +57,75 @@ const categories = ["Tutti", ...new Set(news.map(n => n.category))];
   <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
     <div class="max-w-6xl mx-auto px-4 py-16 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Notizie</h1>
-      <p class="text-xl" style="color: var(--color-text-secondary);">Tutto ciò che accade nel nostro circolo</p>
+      <p class="text-xl" style="color: #94a3b8;">Tutto ciò che accade nel nostro circolo</p>
     </div>
   </section>
 
-  <section class="max-w-6xl mx-auto px-4 py-12" style="background-color: var(--color-bg-secondary);">
-    <!-- Category filters -->
-    <div class="flex flex-wrap gap-2 mb-10">
-      {categories.map((cat) => (
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-2 mb-8" id="filters">
+      {categories.map((cat, i) => (
         <button
-          class="px-4 py-2 rounded-full text-sm font-medium transition-colors border"
-          data-category={cat}
-          style={cat === "Tutti"
-            ? `background-color: var(--color-primary); color: #000; border-color: var(--color-primary);`
-            : `background-color: var(--color-bg-card); color: var(--color-text-secondary); border-color: var(--color-border);`
+          class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors"
+          style={i === 0
+            ? "background-color: var(--color-primary); color: #000;"
+            : "background-color: var(--color-bg-card); color: var(--color-text-secondary); border: 1px solid var(--color-border);"
           }
+          data-category={cat.toLowerCase()}
         >
           {cat}
         </button>
       ))}
     </div>
 
-    <!-- News list -->
-    <div class="space-y-8">
+    <!-- News grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="news-grid">
       {news.map((item) => (
-        <article class="rounded-xl shadow-md overflow-hidden border transition-colors" style="background-color: var(--color-bg-card); border-color: var(--color-border);">
-          <div class="md:flex">
-            <div class="md:w-72 shrink-0">
-              <img
-                src={item.image}
-                alt={item.title}
-                class="w-full h-48 md:h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="p-6 flex flex-col justify-center">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="text-xs font-medium px-2.5 py-0.5 rounded-full" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent); color: var(--color-primary);">{item.category}</span>
-                <time class="text-xs" style="color: var(--color-text-muted);">{item.date}</time>
+        <article class="news-card rounded-xl overflow-hidden transition-transform hover:scale-[1.01]" style="background-color: var(--color-bg-card); border: 1px solid var(--color-border);" data-category={item.category.toLowerCase()}>
+          <div class="flex flex-col sm:flex-row">
+            <img src={item.image} alt={item.title} class="w-full sm:w-48 h-48 sm:h-auto object-cover" />
+            <div class="p-4 flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="px-2 py-0.5 rounded text-xs font-medium" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent); color: var(--color-primary);">{item.category}</span>
+                  <span class="text-xs" style="color: var(--color-text-muted);">{item.date}</span>
+                </div>
+                <h3 class="font-bold mb-2" style="color: var(--color-text);">{item.title}</h3>
+                <p class="text-sm" style="color: var(--color-text-secondary);">{item.content}</p>
               </div>
-              <h2 class="text-xl font-bold mb-2" style="color: var(--color-text);">{item.title}</h2>
-              <p class="text-sm leading-relaxed mb-3" style="color: var(--color-text-secondary);">{item.content}</p>
-              <div class="text-xs" style="color: var(--color-text-muted);">di {item.author}</div>
+              <div class="mt-3 text-xs" style="color: var(--color-text-muted);">di {item.author}</div>
             </div>
           </div>
         </article>
       ))}
     </div>
   </section>
+
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-category') || 'tutti';
+
+        // Update active style
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.style.backgroundColor = 'var(--color-bg-card)';
+          b.style.color = 'var(--color-text-secondary)';
+          b.style.border = '1px solid var(--color-border)';
+        });
+        btn.style.backgroundColor = 'var(--color-primary)';
+        btn.style.color = '#000';
+        btn.style.border = 'none';
+
+        // Filter cards
+        document.querySelectorAll('.news-card').forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (cat === 'tutti' || cardCat === cat) {
+            (card as HTMLElement).style.display = '';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

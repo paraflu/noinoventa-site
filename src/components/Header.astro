@@ -11,7 +11,7 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 shadow-lg" style="background-color: var(--color-header-bg); color: var(--color-header-text);">
+<header class="sticky top-0 z-50 shadow-lg" style="background-color: var(--color-header-bg); color: var(--color-header-text); border-bottom: 1px solid var(--color-border);">
   <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
       <img src="/logo-noi.jpg" alt="Logo NOI" class="w-10 h-10 rounded-full object-cover" />
@@ -27,10 +27,10 @@ const currentPath = Astro.url.pathname;
         <a
           href={item.href}
           class:list={[
-            "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+            "px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-white/10",
             currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
-              ? "text-black"
-              : "hover:bg-white/10",
+              ? ""
+              : "",
           ]}
           style={currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
             ? `background-color: var(--color-primary); color: #000;`
@@ -46,9 +46,10 @@ const currentPath = Astro.url.pathname;
       <ThemeToggle />
       <!-- Mobile hamburger -->
       <button
-        id="menu-toggle"
-        class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
-        aria-label="Menu"
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+        style="color: var(--color-text);"
+        aria-label="Apri menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -58,7 +59,7 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile nav -->
-  <nav id="mobile-menu" class="hidden md:hidden border-t" style="background-color: var(--color-bg-secondary); border-color: var(--color-border);">
+  <nav id="mobile-menu" class="hidden md:hidden border-t" style="background-color: var(--color-bg); border-color: var(--color-border);">
     <div class="max-w-6xl mx-auto px-4 py-2">
       {navItems.map((item) => (
         <a
@@ -66,8 +67,8 @@ const currentPath = Astro.url.pathname;
           class:list={[
             "block px-4 py-3 rounded-lg text-sm font-medium transition-colors",
             currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
-              ? "text-black"
-              : "hover:bg-white/10",
+              ? "font-bold"
+              : "",
           ]}
           style={currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
             ? `background-color: var(--color-primary); color: #000;`
@@ -82,7 +83,10 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
+  const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
 </script>

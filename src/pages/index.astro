@@ -36,66 +36,37 @@ const news = [
       <h1 class="text-4xl md:text-5xl font-bold mb-4">
         Associazione <span style="color: var(--color-secondary);">NOI</span>
       </h1>
-      <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" style="color: var(--color-text-secondary);">
+      <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" style="color: #94a3b8;">
         Noventa di Piave — Circolo di promozione sociale e culturale
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/notizie"
-          class="px-8 py-3 rounded-lg font-bold transition-colors text-black"
-          style="background-color: var(--color-primary);"
-        >
-          Ultime Notizie
+        <a href="/notizie" class="px-6 py-3 rounded-lg font-semibold transition-colors" style="background-color: var(--color-primary); color: #000;">
+          Ultime notizie
         </a>
-        <a
-          href="/dove-siamo"
-          class="border-2 px-8 py-3 rounded-lg font-medium transition-colors"
-          style="border-color: var(--color-secondary); color: var(--color-secondary);"
-        >
-          Dove Siamo
+        <a href="/dove-siamo" class="px-6 py-3 rounded-lg font-semibold transition-colors border" style="border-color: var(--color-text-muted); color: var(--color-text-muted);">
+          Dove siamo
         </a>
       </div>
     </div>
   </section>
 
   <!-- News preview -->
-  <section class="max-w-6xl mx-auto px-4 py-16" style="background-color: var(--color-bg-secondary);">
+  <section class="max-w-6xl mx-auto px-4 py-16">
     <div class="flex items-center justify-between mb-8">
-      <h2 class="text-3xl font-bold" style="color: var(--color-text);">Ultime Notizie</h2>
-      <a href="/notizie" class="font-medium text-sm" style="color: var(--color-primary);">
-        Vedi tutte →
-      </a>
+      <h2 class="text-2xl font-bold" style="color: var(--color-text);">Ultime notizie</h2>
+      <a href="/notizie" class="text-sm font-medium" style="color: var(--color-primary);">Vedi tutte →</a>
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {news.map((item) => (
-        <article class="rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border" style="background-color: var(--color-bg-card); border-color: var(--color-border);">
-          <div class="aspect-[3/4] overflow-hidden">
-            <img
-              src={item.image}
-              alt={item.title}
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              loading="lazy"
-            />
-          </div>
+        <article class="rounded-xl overflow-hidden transition-transform hover:scale-[1.02]" style="background-color: var(--color-bg-card); border: 1px solid var(--color-border);">
+          <img src={item.image} alt={item.title} class="w-full h-48 object-cover" />
           <div class="p-5">
-            <time class="text-xs font-medium" style="color: var(--color-text-muted);">{item.date}</time>
-            <h3 class="text-lg font-bold mt-1 mb-2 line-clamp-2" style="color: var(--color-text);">{item.title}</h3>
-            <p class="text-sm line-clamp-2" style="color: var(--color-text-secondary);">{item.excerpt}</p>
+            <p class="text-xs mb-2" style="color: var(--color-text-muted);">{item.date}</p>
+            <h3 class="font-bold mb-2" style="color: var(--color-text);">{item.title}</h3>
+            <p class="text-sm" style="color: var(--color-text-secondary);">{item.excerpt}</p>
           </div>
         </article>
       ))}
-    </div>
-  </section>
-
-  <!-- About strip -->
-  <section class="border-y" style="background-color: var(--color-bg); border-color: var(--color-border);">
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-3xl font-bold mb-4" style="color: var(--color-text);">Il nostro circolo</h2>
-      <p class="max-w-2xl mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
-        L'Associazione NOI è un circolo di promozione sociale e culturale di Noventa di Piave.
-        Organizziamo eventi, rassegne teatrali, sagre, laboratori e attività per tutta la comunità.
-      </p>
     </div>
   </section>
 </BaseLayout>
