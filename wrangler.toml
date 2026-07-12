@@ -1,5 +1,6 @@
 name = "noinoventa-site"
 compatibility_date = "2024-09-25"
+account_id = "01e92bea22b7d9623003c0d808dfa0ba"
 
 [site]
 bucket = "./dist"
