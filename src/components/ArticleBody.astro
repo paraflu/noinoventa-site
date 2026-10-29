@@ -1,12 +1,12 @@
 ---
 import { formatDate, type Article } from '../lib/articles';
-interface Props { article: Article; }
-const { article } = Astro.props;
+interface Props { article: Article; embedded?: boolean; }
+const { article, embedded = false } = Astro.props;
 ---
 <article class="reading-column section-space">
   <a href="/notizie/" class="read-more">← Tutto l’archivio</a>
   <p class="eyebrow">{article.category} · Archivio Joomla</p>
-  <h1>{article.title}</h1>
+  {embedded ? <h2>{article.title}</h2> : <h1>{article.title}</h1>}
   <p class="article-meta">Creato il <time datetime={article.created?.slice(0, 10)}>{formatDate(article.created)}</time>{article.modified ? ` · Modificato il ${formatDate(article.modified)}` : ''}</p>
   <aside class="notice">Copia statica di archivio, non un annuncio aggiornato. Date, programmi e riferimenti possono essere storici. {article.reviewRequired && 'Testo da verificare: media, allegati e recapiti non sono riprodotti integralmente.'}</aside>
   <div class="article-copy">

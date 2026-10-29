@@ -7,5 +7,5 @@ const { article } = Astro.props;
   <p class="eyebrow">{article.category} · <time datetime={article.created?.slice(0, 10)}>{formatDate(article.created)}</time></p>
   <h2><a href={article.path}>{article.title}</a></h2>
   <p>{article.paragraphs.join(' ').slice(0, 200) || 'Contenuto originale prevalentemente multimediale: revisione necessaria.'}{article.paragraphs.join(' ').length > 200 ? '…' : ''}</p>
-  <a class="read-more" href={article.path}>Leggi nell’archivio <span aria-hidden="true">→</span></a>
+  <a class="read-more" href={article.path} aria-label={`Leggi nell’archivio: ${article.title}`}>Leggi nell’archivio <span aria-hidden="true">→</span></a>
 </article>

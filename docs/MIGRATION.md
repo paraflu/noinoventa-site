@@ -11,6 +11,8 @@
 
 ## Struttura e URL
 
+Il confronto degli href pubblici osservati con le rotte effettive e la specifica non eseguibile dei redirect candidati sono in [URL-COMPARISON-DRAFT.md](URL-COMPARISON-DRAFT.md). È una bozza parziale, non una configurazione di produzione.
+
 `src/data/joomla.json` è un formato pubblico minimizzato con ID, alias originale, titolo, categoria, date originali e paragrafi. `docs/import-report.json` contiene soltanto conteggi e limiti.
 
 Le nuove pagine POC sono `/notizie/<id>-<alias>/`: sono percorsi nuovi e univoci, **non URL SEF storici dedotti**. Solo un menu pubblico diretto ad articolo è mappabile: `/dove-siamo/`. La pagina mantiene l'indirizzo POC ed espone anche il testo storico associato, distinto dai dati correnti da confermare. Le altre voci menu (categorie, estensioni o destinazioni escluse) non sono trasformate arbitrariamente in redirect. Occorrono un inventario URL pubblico e verifica editoriale prima di definire redirect Joomla, `.html`, `/joomla/` e query `index.php`.
@@ -39,6 +41,8 @@ npm audit
 `npm run verify`: unit test parser/privacy/visibilità, Astro check, build statica, verifica di tutti i percorsi interni e asset locali generati, riconciliazione conteggi e `noindex`. Non verifica media esterni: non sono incorporati nell'archivio. Il POC ha banner esplicito e `noindex,nofollow`, ma non è un sistema di controllo accessi.
 
 ## Sicurezza operativa
+
+Il guard `verify_private_inventory_is_not_built` è un **controllo strutturale di leakage noto, non un sistema completo di data-loss prevention**: rifiuta `complete-review-inventory.json` come componente esatto di un percorso di output (file o directory), i token case-sensitive `editorialStatus`, `reviewFlags`, `sourceAccess`, `sourceState` nei nomi di file/directory e i marker letterali nei contenuti letti come UTF-8 e nei dati pubblici serializzati. Dati privati rinominati arbitrariamente, codificati, compressi o trasformati possono sfuggire al controllo. Il guard verifica inoltre gli ID nelle route articolo convenzionali; il controllo principale verifica separatamente tutti i percorsi attesi e il conteggio HTML. Nessun esito positivo sostituisce la revisione editoriale/privacy né autorizza la pubblicazione.
 
 Il workflow esistente `.github/workflows/deploy.yml` effettua deploy su push a **main** o avvio manuale. Per questo il lavoro viene mantenuto su ramo dedicato e PR non integrata: **non fare merge, non avviare workflow, non pubblicare**, finché l'utente non autorizza separatamente. Non sono modificati DNS, Cloudflare, Joomla, sito istituzionale o produzione. Prima di qualsiasi futuro push verificare anche eventuali integrazioni Cloudflare Git esterne alle Actions.
 

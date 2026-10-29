@@ -4,7 +4,7 @@
 
 <button
   id="theme-toggle"
-  class="p-2 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-white/10"
+  class="p-2 min-w-11 min-h-11 flex items-center justify-center rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-white/10"
   style="color: var(--color-text-secondary);"
   aria-label="Cambia tema"
   title="Cambia tema"
@@ -36,9 +36,11 @@
     const effective = theme === 'system' ? getSystemTheme() : theme;
     document.documentElement.classList.toggle('dark', effective === 'dark');
 
+    const label = `Cambia tema: attuale ${theme === 'system' ? 'automatico' : theme === 'light' ? 'chiaro' : 'scuro'}`;
+    document.getElementById('theme-toggle')?.setAttribute('aria-label', label);
     // Update icons
-    document.getElementById('theme-icon-light')?.classList.toggle('hidden', effective !== 'light');
-    document.getElementById('theme-icon-dark')?.classList.toggle('hidden', effective !== 'dark');
+    document.getElementById('theme-icon-light')?.classList.toggle('hidden', theme !== 'light');
+    document.getElementById('theme-icon-dark')?.classList.toggle('hidden', theme !== 'dark');
     document.getElementById('theme-icon-auto')?.classList.toggle('hidden', theme !== 'system');
   }
 

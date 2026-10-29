@@ -12,10 +12,10 @@ const { title, description } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-  <Header />
   <a class="skip-link" href="#main-content">Vai al contenuto</a>
+  <Header />
   <div class="poc-banner">Prototipo NOI Noventa · Archivio in revisione · Non sito istituzionale</div>
-  <main id="main-content" class="flex-1">
+  <main id="main-content" class="flex-1" tabindex="-1">
     <slot />
   </main>
   <Footer />

@@ -16,5 +16,5 @@ const legacy = articles.find(article => article.id === menu?.articleId);
       <section class="archive-card"><h2>Contatti del POC</h2><p><a href={`mailto:${association.email}`}>{association.email}</a></p><p><a href={`tel:${association.phone.replaceAll(' ', '')}`}>{association.phone}</a></p><a class="read-more" href={association.facebook} target="_blank" rel="noopener noreferrer">Pagina Facebook ↗</a></section>
     </div>
   </section>
-  {legacy && <section aria-label="Contenuto storico del menu Joomla"><ArticleBody article={legacy} /></section>}
+  {legacy && <section aria-label="Contenuto storico del menu Joomla"><ArticleBody article={legacy} embedded /></section>}
 </BaseLayout>
