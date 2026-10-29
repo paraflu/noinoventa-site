@@ -1,0 +1,44 @@
+{
+  "reconciliation": {
+    "source": 292,
+    "imported": 83,
+    "excluded": 209,
+    "errors": 0
+  },
+  "sourceStates": {
+    "-2": 57,
+    "1": 200,
+    "2": 23,
+    "0": 12
+  },
+  "articlesWithoutCategory": 42,
+  "contentCategories": 22,
+  "sourcePrefix": "jos25_",
+  "tables": [
+    "jos25_content",
+    "jos25_categories",
+    "jos25_menu"
+  ],
+  "asOf": "2026-10-29 00:00:00",
+  "sourceRows": {
+    "jos25_content": 292,
+    "jos25_categories": 37,
+    "jos25_menu": 84
+  },
+  "importedArticles": 83,
+  "excluded": {
+    "non_public_article": 92,
+    "non_public_or_missing_category": 28,
+    "outside_publication_window": 89
+  },
+  "mappedArticleMenus": 1,
+  "articlesNeedingReview": 76,
+  "mediaReferencesOmitted": 96,
+  "limitations": [
+    "Text-only public projection; media, attachments, HTML links and Joomla plugins require editorial review.",
+    "Original aliases and wall-time dates retained; source timezone is not inferred.",
+    "Only direct public article menu paths mapped; no inferred Joomla SEF routes.",
+    "Authors, users, sessions, ACL, credentials and private metadata are not exported.",
+    "Automated contact redaction is not a substitute for editorial privacy review."
+  ]
+}

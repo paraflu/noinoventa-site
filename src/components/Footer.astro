@@ -1,69 +1,12 @@
 ---
+import { association } from '../data/association';
 const year = new Date().getFullYear();
 ---
-
-<footer class="mt-auto border-t" style="background-color: var(--color-bg-secondary); color: var(--color-text-secondary); border-color: var(--color-border);">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- About -->
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <img src="/logo-noi.jpg" alt="Logo NOI" class="w-8 h-8 rounded-full object-cover" />
-          <h3 class="font-bold text-lg" style="color: var(--color-primary);">Associazione NOI</h3>
-        </div>
-        <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">
-          Circolo di promozione sociale e culturale di Noventa di Piave.
-          Attività, eventi e manifestazioni per la comunità.
-        </p>
-      </div>
-
-      <!-- Contact -->
-      <div>
-        <h3 class="font-bold text-lg mb-3" style="color: var(--color-secondary);">Contatti</h3>
-        <ul class="text-sm space-y-2">
-          <li class="flex items-start gap-2">
-            <svg class="w-4 h-4 mt-0.5 shrink-0" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span>Via Chiesa, 19<br/>30020 Noventa di Piave (VE)</span>
-          </li>
-          <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 shrink-0" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <a href="mailto:info@noinoventa.it" class="hover:underline" style="color: var(--color-primary);">info@noinoventa.it</a>
-          </li>
-          <li class="flex items-center gap-2">
-            <svg class="w-4 h-4 shrink-0" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            <span>+39 0421 65006</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Links -->
-      <div>
-        <h3 class="font-bold text-lg mb-3" style="color: var(--color-secondary);">Link utili</h3>
-        <ul class="text-sm space-y-2">
-          <li><a href="/" class="hover:underline" style="color: var(--color-primary);">Home</a></li>
-          <li><a href="/dove-siamo" class="hover:underline" style="color: var(--color-primary);">Dove siamo</a></li>
-          <li><a href="/notizie" class="hover:underline" style="color: var(--color-primary);">Notizie</a></li>
-          <li>
-            <a href="https://www.facebook.com/people/NOI-Circolo-San-Luigi-APS-Noventa-di-Piave/100093341352626/" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--color-primary);">
-              Facebook
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+<footer class="site-footer">
+  <div class="content-width footer-grid">
+    <div><h2>{association.name}</h2><p>Attività, eventi e manifestazioni per la comunità di Noventa di Piave.</p><p class="eyebrow">Prototipo statico · Non sito istituzionale</p></div>
+    <div><h2>Riferimenti del POC</h2><p>{association.address}<br />{association.locality}</p><p><a href={`mailto:${association.email}`}>{association.email}</a> · {association.phone}</p><small>{association.verification}</small></div>
+    <nav aria-label="Collegamenti nel piè di pagina"><a href="/notizie/">Archivio notizie</a><a href="/dove-siamo/">Il circolo e i contatti</a><a href={association.facebook} target="_blank" rel="noopener noreferrer">Facebook ↗</a></nav>
   </div>
-
-  <!-- Bottom bar -->
-  <div class="border-t py-4" style="border-color: var(--color-border);">
-    <div class="max-w-6xl mx-auto px-4 text-center text-sm" style="color: var(--color-text-muted);">
-      © {year} Associazione NOI - Circolo San Luigi APS. Tutti i diritti riservati.
-    </div>
-  </div>
+  <p class="content-width copyright">© {year} {association.name} · POC in revisione, nessuna pubblicazione della migrazione.</p>
 </footer>
