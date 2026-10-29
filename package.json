@@ -9,11 +9,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "check:static": "python3 scripts/check_static.py",
+    "verify": "npm test && npm run check && npm run build && npm run check:static"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",
     "astro": "^7.0.7",
     "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3"
   }
 }

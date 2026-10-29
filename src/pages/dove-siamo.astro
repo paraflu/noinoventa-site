@@ -1,94 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleBody from '../components/ArticleBody.astro';
+import { association } from '../data/association';
+import { articles, articleMenus } from '../lib/articles';
+const menu = articleMenus.find(menu => menu.path === '/dove-siamo/');
+const legacy = articles.find(article => article.id === menu?.articleId);
 ---
-
-<BaseLayout title="Dove siamo">
-  <!-- Hero -->
-  <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Dove siamo</h1>
-      <p class="text-xl" style="color: #94a3b8;">Vieni a trovarci a Noventa di Piave</p>
+<BaseLayout title="Il circolo e i contatti">
+  <section class="content-width section-space">
+    <p class="eyebrow">Noventa di Piave</p><h1>Il circolo e i contatti</h1>
+    <p class="section-intro">{association.name}</p>
+    <aside class="notice">{association.verification} Orari e cellulari presenti nella vecchia demo non vengono proposti come attuali: occorre conferma.</aside>
+    <div class="archive-grid section-space">
+      <section class="archive-card"><h2>Dove siamo</h2><p>{association.address}<br />{association.locality}</p><a class="read-more" href={association.map} target="_blank" rel="noopener noreferrer">Apri la mappa ↗</a><p>Coordinate del POC, da verificare. La mappa si apre solo su richiesta.</p></section>
+      <section class="archive-card"><h2>Contatti del POC</h2><p><a href={`mailto:${association.email}`}>{association.email}</a></p><p><a href={`tel:${association.phone.replaceAll(' ', '')}`}>{association.phone}</a></p><a class="read-more" href={association.facebook} target="_blank" rel="noopener noreferrer">Pagina Facebook ↗</a></section>
     </div>
   </section>
-
-  <section class="max-w-6xl mx-auto px-4 py-16" style="background-color: var(--color-bg-secondary);">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Info -->
-      <div>
-        <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">Associazione NOI</h2>
-
-        <div class="space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);">
-              <svg class="w-5 h-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-bold" style="color: var(--color-text);">Indirizzo</h3>
-              <p style="color: var(--color-text-secondary);">Via Chiesa, 19<br/>30020 Noventa di Piave (VE)</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);">
-              <svg class="w-5 h-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-bold" style="color: var(--color-text);">Email</h3>
-              <p><a href="mailto:info@noinoventa.it" style="color: var(--color-primary);" class="hover:underline">info@noinoventa.it</a></p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);">
-              <svg class="w-5 h-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-bold" style="color: var(--color-text);">Telefono</h3>
-              <p style="color: var(--color-text-secondary);">+39 0421 65006</p>
-              <p style="color: var(--color-text-muted);" class="text-sm">Cellulare: 338 7040775 / 347 1886094</p>
-            </div>
-          </div>
-
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);">
-              <svg class="w-5 h-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-bold" style="color: var(--color-text);">Orari</h3>
-              <p style="color: var(--color-text-secondary);">Bar: tutti i pomeriggi 15:30 - 18:30</p>
-              <p style="color: var(--color-text-secondary);">Domenica: 9:00 - 12:30</p>
-              <p style="color: var(--color-text-muted);" class="text-sm">Lunedì e festivi chiuso</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Map -->
-      <div>
-        <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">Mappa</h2>
-        <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--color-border);">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=12.5270%2C45.6600%2C12.5310%2C45.6640&layer=mapnik&marker=45.6616%2C12.5289"
-            width="100%"
-            height="400"
-            style="border:0;"
-            loading="lazy"
-            title="Mappa Circolo NOI"
-          ></iframe>
-        </div>
-        <p class="text-sm mt-3" style="color: var(--color-text-muted);">
-          <a href="https://www.openstreetmap.org/?mlat=45.6616&mlon=12.5289#map=17/45.6616/12.5289" target="_blank" rel="noopener noreferrer" class="hover:underline" style="color: var(--color-primary);">Apri in OpenStreetMap ↗</a>
-        </p>
-      </div>
-    </div>
-  </section>
+  {legacy && <section aria-label="Contenuto storico del menu Joomla"><ArticleBody article={legacy} embedded /></section>}
 </BaseLayout>

@@ -1,72 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const news = [
-  {
-    title: "Notte di fiabe al Parco – ECCO I MOSTRI!",
-    date: "18 Giu 2026",
-    image: "https://www.noinoventa.it/joomla/images/fiabe_parco_web.jpg",
-    excerpt: "Porta un telo mare o una coperta e accomodati sul prato: lo spettacolo è sotto le stelle!",
-    slug: "notte-di-fiabe-al-parco",
-  },
-  {
-    title: "Sagra dell'Uva 2026 – Programma Completo",
-    date: "15 Giu 2026",
-    image: "https://www.noinoventa.it/images/Programma_Sagra_2026-1.jpg",
-    excerpt: "Ecco il programma completo della Sagra dell'Uva 2026. Tante iniziative, gusti e tradizione!",
-    slug: "sagra-uva-2026",
-  },
-  {
-    title: "Intrecciamo Storie – Laboratorio di Scrittura Creativa",
-    date: "10 Giu 2026",
-    image: "https://www.noinoventa.it/images/intrecciamostorie.png",
-    excerpt: "Un percorso di scrittura creativa aperto a tutti. Le storie si intrecciano tra loro.",
-    slug: "intrecciamo-storie",
-  },
-];
+import ArticleCard from '../components/ArticleCard.astro';
+import { articles } from '../lib/articles';
+import { association } from '../data/association';
 ---
-
 <BaseLayout title="Home">
-  <!-- Hero -->
-  <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
-    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
-      <div class="flex justify-center mb-6">
-        <img src="/logo-noi.jpg" alt="Logo NOI" class="w-24 h-24 rounded-full object-cover" />
+  <section class="home-hero section-space">
+    <div class="content-width hero-grid">
+      <div><p class="eyebrow">Noventa di Piave · Comunità e partecipazione</p>
+        <h1>NOI, un luogo<br />per incontrarsi.</h1>
+        <p class="hero-description">{association.name}. Attività, eventi e manifestazioni per la comunità.</p>
+        <div class="actions"><a class="button-primary" href="/notizie/">Esplora l’archivio</a><a class="button-secondary" href="/dove-siamo/">Il circolo e i contatti</a></div>
       </div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
-        Associazione <span style="color: var(--color-secondary);">NOI</span>
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" style="color: #94a3b8;">
-        Noventa di Piave — Circolo di promozione sociale e culturale
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/notizie" class="px-6 py-3 rounded-lg font-semibold transition-colors" style="background-color: var(--color-primary); color: #000;">
-          Ultime notizie
-        </a>
-        <a href="/dove-siamo" class="px-6 py-3 rounded-lg font-semibold transition-colors border" style="border-color: var(--color-text-muted); color: var(--color-text-muted);">
-          Dove siamo
-        </a>
-      </div>
+      <div class="hero-emblem"><img src="/logo-noi.jpg" alt="Logo NOI" width="220" height="220" /><p>Circolo San Luigi APS<br /><span>Noventa di Piave</span></p></div>
     </div>
   </section>
-
-  <!-- News preview -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <div class="flex items-center justify-between mb-8">
-      <h2 class="text-2xl font-bold" style="color: var(--color-text);">Ultime notizie</h2>
-      <a href="/notizie" class="text-sm font-medium" style="color: var(--color-primary);">Vedi tutte →</a>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {news.map((item) => (
-        <article class="rounded-xl overflow-hidden transition-transform hover:scale-[1.02]" style="background-color: var(--color-bg-card); border: 1px solid var(--color-border);">
-          <img src={item.image} alt={item.title} class="w-full h-48 object-cover" />
-          <div class="p-5">
-            <p class="text-xs mb-2" style="color: var(--color-text-muted);">{item.date}</p>
-            <h3 class="font-bold mb-2" style="color: var(--color-text);">{item.title}</h3>
-            <p class="text-sm" style="color: var(--color-text-secondary);">{item.excerpt}</p>
-          </div>
-        </article>
-      ))}
-    </div>
+  <section class="content-width section-space">
+    <div class="section-heading"><div><p class="eyebrow">La memoria del circolo</p><h2>Ultimi contenuti in archivio</h2></div><a class="read-more" href="/notizie/">Vedi tutti →</a></div>
+    <p class="section-intro">Articoli importati dal sito Joomla: le date sono quelle originali, non un calendario delle prossime attività.</p>
+    <div class="archive-grid">{articles.slice(0, 6).map(article => <ArticleCard article={article} />)}</div>
   </section>
 </BaseLayout>

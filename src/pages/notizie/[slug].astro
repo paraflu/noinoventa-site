@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleBody from '../../components/ArticleBody.astro';
+import { articles } from '../../lib/articles';
+export function getStaticPaths() {
+  return articles.map(article => ({ params: { slug: `${article.id}-${article.alias}` }, props: { article } }));
+}
+const { article } = Astro.props;
+---
+<BaseLayout title={article.title}><ArticleBody article={article} /></BaseLayout>

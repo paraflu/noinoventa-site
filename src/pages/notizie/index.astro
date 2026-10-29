@@ -1,131 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const news = [
-  {
-    title: "Notte di fiabe al Parco – ECCO I MOSTRI!",
-    date: "18 Giu 2026",
-    author: "Andrea Forlin",
-    image: "https://www.noinoventa.it/joomla/images/fiabe_parco_web.jpg",
-    content: "NOTTE DI FIABE AL PARCO — ECCO I MOSTRI!\n\nPorta un telo mare o una coperta e accomodati sul prato: lo spettacolo è sotto le stelle!\n\nPer info: 338 7040775 / 347 1886094",
-    category: "Eventi",
-    slug: "notte-di-fiabe-al-parco",
-  },
-  {
-    title: "Sagra dell'Uva 2026 – Programma Completo",
-    date: "15 Giu 2026",
-    author: "Andrea Forlin",
-    image: "https://www.noinoventa.it/images/Programma_Sagra_2026-1.jpg",
-    content: "Ecco il programma completo della Sagra dell'Uva 2026. Tante iniziative, gusti e tradizione!",
-    category: "Sagre",
-    slug: "sagra-uva-2026",
-  },
-  {
-    title: "Intrecciamo Storie – Laboratorio di Scrittura Creativa",
-    date: "10 Giu 2026",
-    author: "Andrea Forlin",
-    image: "https://www.noinoventa.it/images/intrecciamostorie.png",
-    content: "Un percorso di scrittura creativa aperto a tutti. Le storie si intrecciano tra loro.",
-    category: "Laboratori",
-    slug: "intrecciamo-storie",
-  },
-  {
-    title: "Musica del Cuore – Concerto di Beneficenza",
-    date: "5 Giu 2026",
-    author: "Andrea Forlin",
-    image: "https://www.noinoventa.it/images/musica-del-cuore.jpeg",
-    content: "Un concerto speciale per raccogliere fondi. La musica che unisce le persone.",
-    category: "Teatro",
-    slug: "teatro-san-mauro",
-  },
-  {
-    title: "Festa della Repubblica – Programma degli Eventi",
-    date: "2 Giu 2026",
-    author: "Andrea Forlin",
-    image: "https://www.noinoventa.it/images/photo_5809658509203803762_y.jpg",
-    content: "Programma degli eventi per la Festa della Repubblica. Mostra storica, concerto e cena sociale.",
-    category: "Eventi",
-    slug: "festa-della-repubblica",
-  },
-];
-
-const categories = ["Tutti", "Eventi", "Sagre", "Laboratori", "Teatro"];
+import ArticleCard from '../../components/ArticleCard.astro';
+import { articles } from '../../lib/articles';
+const categories = [...new Set(articles.map(article => article.category))].sort((a, b) => a.localeCompare(b, 'it'));
 ---
-
-<BaseLayout title="Notizie">
-  <!-- Hero -->
-  <section class="text-white" style="background: linear-gradient(135deg, var(--color-hero-from), var(--color-hero-via), var(--color-hero-to));">
-    <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Notizie</h1>
-      <p class="text-xl" style="color: #94a3b8;">Tutto ciò che accade nel nostro circolo</p>
-    </div>
+<BaseLayout title="Archivio notizie">
+  <section class="content-width section-space">
+    <p class="eyebrow">Storie, iniziative e vita associativa</p><h1>Archivio notizie</h1>
+    <p class="section-intro">{articles.length} articoli pubblici dal prefisso jos25_. Un archivio storico, non un programma aggiornato.</p>
+    <div class="notice">POC editoriale: testi semplificati, senza media e allegati. Alcuni recapiti sono omessi. I contenuti richiedono revisione prima di una futura pubblicazione.</div>
+    <form class="archive-filters" role="search" onsubmit="return false">
+      <label>Cerca nell’archivio<input id="article-search" type="search" placeholder="Titolo o testo" /></label>
+      <label>Categoria<select id="article-category"><option value="">Tutte le categorie</option>{categories.map(category => <option value={category}>{category}</option>)}</select></label>
+    </form>
+    <p id="results-count" role="status" aria-live="polite">{articles.length} articoli</p>
+    <div class="archive-grid" id="archive-grid">{articles.map(article => <div data-category={article.category} data-search={`${article.title} ${article.paragraphs.join(' ')}`.toLocaleLowerCase('it')}><ArticleCard article={article} /></div>)}</div>
+    <p id="no-results" hidden>Nessun articolo corrisponde alla ricerca.</p>
   </section>
-
-  <section class="max-w-6xl mx-auto px-4 py-12">
-    <!-- Filters -->
-    <div class="flex flex-wrap gap-2 mb-8" id="filters">
-      {categories.map((cat, i) => (
-        <button
-          class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors"
-          style={i === 0
-            ? "background-color: var(--color-primary); color: #000;"
-            : "background-color: var(--color-bg-card); color: var(--color-text-secondary); border: 1px solid var(--color-border);"
-          }
-          data-category={cat.toLowerCase()}
-        >
-          {cat}
-        </button>
-      ))}
-    </div>
-
-    <!-- News grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="news-grid">
-      {news.map((item) => (
-        <article class="news-card rounded-xl overflow-hidden transition-transform hover:scale-[1.01]" style="background-color: var(--color-bg-card); border: 1px solid var(--color-border);" data-category={item.category.toLowerCase()}>
-          <div class="flex flex-col sm:flex-row">
-            <img src={item.image} alt={item.title} class="w-full sm:w-48 h-48 sm:h-auto object-cover" />
-            <div class="p-4 flex flex-col justify-between flex-1">
-              <div>
-                <div class="flex items-center gap-2 mb-2">
-                  <span class="px-2 py-0.5 rounded text-xs font-medium" style="background-color: color-mix(in srgb, var(--color-primary) 20%, transparent); color: var(--color-primary);">{item.category}</span>
-                  <span class="text-xs" style="color: var(--color-text-muted);">{item.date}</span>
-                </div>
-                <h3 class="font-bold mb-2" style="color: var(--color-text);">{item.title}</h3>
-                <p class="text-sm" style="color: var(--color-text-secondary);">{item.content}</p>
-              </div>
-              <div class="mt-3 text-xs" style="color: var(--color-text-muted);">di {item.author}</div>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
-
   <script>
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-category') || 'tutti';
-
-        // Update active style
-        document.querySelectorAll('.filter-btn').forEach(b => {
-          b.style.backgroundColor = 'var(--color-bg-card)';
-          b.style.color = 'var(--color-text-secondary)';
-          b.style.border = '1px solid var(--color-border)';
-        });
-        btn.style.backgroundColor = 'var(--color-primary)';
-        btn.style.color = '#000';
-        btn.style.border = 'none';
-
-        // Filter cards
-        document.querySelectorAll('.news-card').forEach(card => {
-          const cardCat = card.getAttribute('data-category');
-          if (cat === 'tutti' || cardCat === cat) {
-            (card as HTMLElement).style.display = '';
-          } else {
-            (card as HTMLElement).style.display = 'none';
-          }
-        });
-      });
-    });
+    const search = document.querySelector<HTMLInputElement>('#article-search');
+    const category = document.querySelector<HTMLSelectElement>('#article-category');
+    const cards = [...document.querySelectorAll<HTMLElement>('#archive-grid > div')];
+    function filter() {
+      let visible = 0;
+      const query = search?.value.trim().toLocaleLowerCase('it') || '';
+      for (const card of cards) {
+        card.hidden = !((!category?.value || card.dataset.category === category.value) && (card.dataset.search || '').includes(query));
+        if (!card.hidden) visible++;
+      }
+      document.querySelector('#results-count')!.textContent = `${visible} articoli`;
+      document.querySelector<HTMLElement>('#no-results')!.hidden = visible > 0;
+    }
+    search?.addEventListener('input', filter);
+    category?.addEventListener('change', filter);
   </script>
 </BaseLayout>
